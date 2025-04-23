@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Power BI Page Slideshow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<section id="slideshow">
+  <div class="slick">
+    <div>
+      <iframe width="1140" height="600" src="https://app.powerbi.com/reportEmbed?reportId=2e430efa-4d68-4c41-81ac-bf18795a9ced&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div>
+      <iframe width="1140" height="600" src="https://app.powerbi.com/reportEmbed?reportId=ce2a8a5f-4e8a-44ea-bd16-f7acd6028ea7&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script>
+  $(document).ready(() => {
+    $('#slideshow .slick').slick({
+      autoplay: true,
+      autoplaySpeed: 10000, // 10 seconds
+      dots: true
+    });
+  });
+</script>
+
+</body>
+</html>
