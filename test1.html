@@ -2,35 +2,54 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Power BI Page Slideshow</title>
+  <title>Power BI Slideshow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    .slick {
+      height: 100vh;
+    }
+    .slide iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
 <section id="slideshow">
   <div class="slick">
-    <div>
-      <iframe width="1280" height="720" src="https://app.powerbi.com/reportEmbed?reportId=a0b43eda-3985-439c-a791-aa11bbe2fcd6&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" frameborder="0" allowfullscreen></iframe>
+    <div class="slide">
+      <iframe src="https://app.powerbi.com/reportEmbed?reportId=a0b43eda-3985-439c-a791-aa11bbe2fcd6&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
     </div>
-    <div>
-      <iframe width="1920" height="1080" src="https://app.powerbi.com/reportEmbed?reportId=97acde49-33c8-45cc-b6d6-93d5efbd2947&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" frameborder="0" allowfullscreen></iframe>
+    <div class="slide">
+      <iframe src="https://app.powerbi.com/reportEmbed?reportId=97acde49-33c8-45cc-b6d6-93d5efbd2947&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
     </div>
-    <div>
-      <iframe width="1920" height="1080" src="https://app.powerbi.com/reportEmbed?reportId=64972ca7-d140-43da-900d-d89c5c68b1a5&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" frameborder="0" allowfullscreen></iframe>
+    <div class="slide">
+      <iframe src="https://app.powerbi.com/reportEmbed?reportId=64972ca7-d140-43da-900d-d89c5c68b1a5&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script>
   $(document).ready(() => {
-    $('#slideshow .slick').slick({
+    $('.slick').slick({
       autoplay: true,
-      autoplaySpeed: 10000, // 10 seconds
-      dots: true
+      autoplaySpeed: 10000,
+      arrows: false,
+      dots: false,
+      infinite: true
     });
   });
 </script>
