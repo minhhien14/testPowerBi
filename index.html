@@ -1,72 +1,60 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Power BI Slideshow</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-    .slick {
-      height: 100vh;
-    }
-    .slide iframe {
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<meta charset="UTF-8">
+<title>TV Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    background: #000;
+  }
+  iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
+</style>
 </head>
 <body>
 
-<section id="slideshow">
-  <div class="slick">
-    <div class="slide">
-      <iframe src="https://app.powerbi.com/reportEmbed?reportId=cc9fbbe9-0b4b-4f18-bc48-bf04b32f2373&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
-    </div>
-    <div class="slide">
-      <iframe src="https://app.powerbi.com/reportEmbed?reportId=08ff6bfc-dc92-4e55-8672-d902084b8a6d&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
-    </div>
-    <div class="slide">
-      <iframe src="https://app.powerbi.com/reportEmbed?reportId=fc70bfaf-d5a1-4722-a9b5-ba767e073587&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
+<iframe id="dashboard" src=""></iframe>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script>
-  $(document).ready(() => {
-    // Initialize slick slider
-    $('.slick').slick({
-      autoplay: true,
-      autoplaySpeed: 10000, // ✅ 10 seconds per slide
-      arrows: false,
-      dots: false,
-      infinite: true
-    });
+const reports = [
+  "https://app.powerbi.com/reportEmbed?reportId=cc9fbbe9-0b4b-4f18-bc48-bf04b32f2373&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd",
+  "https://app.powerbi.com/reportEmbed?reportId=08ff6bfc-dc92-4e55-8672-d902084b8a6d&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd",
+  "https://app.powerbi.com/reportEmbed?reportId=fc70bfaf-d5a1-4722-a9b5-ba767e073587&autoAuth=true&ctid=c19239e5-1337-436d-800a-1b4283c280dd"
+];
 
-    // Reload only the active iframe every 5 minutes
-    setInterval(() => {
-      var currentSlide = $('.slick').slick('slickCurrentSlide'); // get current slide index
-      var iframe = $('.slick .slick-slide[data-slick-index="' + currentSlide + '"] iframe');
+let current = 0;
+const slideInterval = 60000; // 1 min
 
-      if (iframe.length > 0) {
-        var src = iframe.attr('src');
-        iframe.attr('src', src); // reload only the active iframe
-      }
-    }, 300000); // ✅ 5 minutes (300000 ms)
-  });
+const iframe = document.getElementById('dashboard');
+
+function showSlide() {
+  iframe.src = reports[current];
+}
+
+function nextSlide() {
+  current = (current + 1) % reports.length;
+  showSlide();
+}
+
+// Load first slide
+showSlide();
+
+// Change slide every minute
+setInterval(nextSlide, slideInterval);
+
+// Optional: refresh iframe every 5 minutes
+setInterval(() => {
+  iframe.src = reports[current];
+}, 300000);
 </script>
-
 
 </body>
 </html>
