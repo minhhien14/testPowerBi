@@ -45,20 +45,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 <script>
   $(document).ready(() => {
+    // Initialize slick slider
     $('.slick').slick({
       autoplay: true,
-      autoplaySpeed: 60000,
+      autoplaySpeed: 60000, // 10 seconds per slide
       arrows: false,
       dots: false,
       infinite: true
     });
 
-    // Auto-refresh every 60 seconds (1 minute)
-    setTimeout(() => {
-      location.reload();
-    }, 360000);
+    // Every X minutes, reload only the active iframe
+    setInterval(() => {
+      var currentSlide = $('.slick').slick('slickCurrentSlide'); // get current slide index
+      var iframe = $('.slick .slick-slide[data-slick-index="' + currentSlide + '"] iframe');
+
+      if (iframe.length > 0) {
+        var src = iframe.attr('src');
+        iframe.attr('src', src); // reload only the active iframe
+      }
+    }, 300000); // 60 seconds (1 minute)
   });
 </script>
+
 
 </body>
 </html>
